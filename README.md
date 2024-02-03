@@ -15,11 +15,12 @@ A compose service may look something like the following, running it with `$ dock
 services:
   snapshots:
     restart: always
-    build: . # Dockerfile, snapshot.sh
+    build: SQLite3-Snapshot/ # Dockerfile, snapshot.sh
     container_name: snapshots
     volumes:
       - "./Cellar:/Cellar"
       - "./Snapshots:/backups" # must be /backups
+      - "./SQLite3-Snapshot/default:/etc/crontabs/root" # schedule
     environment:
       - "CELLAR=/Cellar/foo.sqlite,/Cellar/bar.sqlite" # comma separated files
 ```
